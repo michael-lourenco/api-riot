@@ -1,8 +1,7 @@
 const fetch = require("node-fetch");
-const env = require("../env");
 const packageJSon = require("../package.json");
 const { reponseErrorJson, responseJson } = require("../utils/controller");
-const { REGION_URL } = require("../env");
+const REGION_URL = require("../utils/region-url");
 
 function toJson(data) {
   return data.json();
@@ -30,7 +29,7 @@ function extractSummonerNameAndLeaguePoints(item) {
 async function getOnlyFirstWorldRankSolo5x5() {
   const allFirstOfWorld = REGION_URL.map((item) => {
     return fetch(
-      `https://${item}.${env.BASE_URL}/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I?page=1&api_key=${env.API_KEY}`
+      `https://${item}.${process.env.API_BASE_URL}/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I?page=1&api_key=${process.env.API_KEY}`
     )
       .then(toJson)
       .then(myMap(extractSummonerNameAndLeaguePoints))

@@ -1,8 +1,7 @@
 const fetch = require("node-fetch");
-const env = require("../env");
 const packageJSon = require("../package.json");
 const { reponseErrorJson, responseJson } = require("../utils/controller");
-const { REGION_URL } = require("../env");
+const LANGUAGES = require("../utils/languages");
 
 function toJson(data) {
   return data.json();
@@ -28,7 +27,7 @@ function extractSummonerNameAndLeaguePoints(item) {
 
 
 async function getChampions() {
-    return fetch(`http://ddragon.leagueoflegends.com/cdn/10.18.1/data/${env.languages[0]}/champion.json`)
+    return fetch(`http://ddragon.leagueoflegends.com/cdn/10.18.1/data/${LANGUAGES[0]}/champion.json`)
     .then(res=>res.json())
 }
 

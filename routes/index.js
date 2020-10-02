@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const controller = require('../controllers/index');
 const controllerChampion = require('../controllers/champion');
 const rank = require('./rank')
